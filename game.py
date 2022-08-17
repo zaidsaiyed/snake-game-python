@@ -1,9 +1,8 @@
 '''
-TODO 
+TODO
 Game loop
     Game intitalization
     Game end
-
 Move snake
 
 Eating snake
@@ -16,6 +15,9 @@ Score
 UI
 
 '''
+
+# This file has all game attributes
+
 
 # for getting current path dynamically
 import os
@@ -33,12 +35,13 @@ def initiate_map():
     
     MAP = open(f'{path}{file}', "r")
     m = (MAP.read()).split("\n")
-    
+    for char in m:
+        print(char)
     
     return
 
 def move(direction):
     
-    print()
+    if direction == 0:
+        pass
 
-initiate_map()

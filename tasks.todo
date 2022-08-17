@@ -1,0 +1,11 @@
+tasks:
+    ☐ Game loop
+        ☐ Game intitalization
+        ☐ Game end
+    ☐ Move snake
+    ☐ Eating snake
+    ☐ MAP
+    ☐ Food
+    ☐ Rules
+    ☐ Score
+    ☐ UI
