@@ -2,4 +2,7 @@
 
 import game
 
-game.initiate_map()
+map = game.initiate_map()
+
+game.scan_map(map)
+game.print_map(map)

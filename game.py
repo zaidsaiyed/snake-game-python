@@ -19,26 +19,39 @@ UI
 # This file has all game attributes
 
 
-# for getting current path dynamically
 import os
+from time import sleep
 
 
 def initiate_map():
-    print(" Choose the map: ")
     # perform input of maps logic here
-
-  
+    print("Choose the map: ")
+    print("\n 1 = Default")
+    #map_selection = input("Choose map number: ")
     current_directory = os.getcwd()
-    
     file = "default.txt"
     path = current_directory+"\maps\\"
     
     MAP = open(f'{path}{file}', "r")
-    m = (MAP.read()).split("\n")
-    for char in m:
-        print(char)
+    return MAP
+
+
+def scan_map(map):
+    list_of_lines = map.read().split("\n")
+    working_area = list_of_lines[1:-1]
+    # print(len(working_area[1]))
+    # snake = '▒'
+    # print(snake)
+        
     
-    return
+def print_map(map):
+    map.seek(0)
+    list_of_lines = map.read().split("\n")
+    for line in list_of_lines:
+        print(line)
+    # sleep(0.5)
+    # os.system('cls')
+    # print("hi")
 
 def move(direction):
     
