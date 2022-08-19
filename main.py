@@ -4,7 +4,7 @@ import game
 
 
 map = game.initiate_map()
-direction = 'right'
+
 game.scan_map(map)
 game.print_map(map)
-game.move_snake(map, direction)
+game.move_snake(map)
