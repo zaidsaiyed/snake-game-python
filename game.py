@@ -64,89 +64,95 @@ def move_snake(map):
     
     
     # key press logic
+    initial = True
+    
     while True:
         
         os.system('cls')
         
         print_map(map)
-        
-        direction, _ = timedInput("",0.3)
-        
-        if direction == 'd':
-            while direction == 'd':
-                if new_pos in valid_pos:
-                    direction, _ = timedInput("",0.3)
-                    if direction == '':
-                        direction = 'd'
-                    old_pos = new_pos
-                    map.seek(new_pos)
-                    map.write('O')
-                    
-                    os.system('cls')
-                    print_map(map)
-                    #sleep(0.25)
-                    
-                    map.seek(old_pos)
-                    map.write(' ')
-                    
-                    new_pos += 1
-                    
-        if direction == 'a':
-            while direction == 'a':
-                if new_pos in valid_pos:
-                    direction, _ = timedInput("",0.3)
-                    if direction == '':
-                        direction = 'a'
-                    old_pos = new_pos
-                    map.seek(new_pos)
-                    map.write('O')
-                    
-                    os.system('cls')
-                    print_map(map)
-                    #sleep(0.25)
-                    
-                    map.seek(old_pos)
-                    map.write(' ')
-                    
-                    new_pos -= 1
                 
-        if direction == 's':
-            while direction == 's':
-                if new_pos in valid_pos:
-                    direction, _ = timedInput("",0.3)
-                    if direction == '':
-                        direction = 's'
-                    old_pos = new_pos
-                    map.seek(new_pos)
-                    map.write('O')
+        if initial:
+            direction = 'd'
+        
+        initial = False
+        match direction:
+            
+            case 'd':
+                while direction == 'd':
+                    if new_pos in valid_pos:
+                        old_pos = new_pos
+                        map.seek(new_pos)
+                        map.write('O')
+                        
+                        os.system('cls')
+                        print_map(map)
+                        #sleep(0.25)
+                        
+                        map.seek(old_pos)
+                        map.write(' ')
+                        
+                        new_pos += 1
+                        direction, _ = timedInput("",0.3)
+                        if direction == '':
+                            direction = 'd'
                     
-                    os.system('cls')
-                    print_map(map)
-                    #sleep(0.25)
-                                
-                    map.seek(old_pos)
-                    map.write(' ')
+            case 'a':
+                while direction == 'a':
+                    if new_pos in valid_pos:
+                        direction, _ = timedInput("",0.3)
+                        if direction == '':
+                            direction = 'a'
+                        old_pos = new_pos
+                        map.seek(new_pos)
+                        map.write('O')
+                        
+                        os.system('cls')
+                        print_map(map)
+                        #sleep(0.25)
+                        
+                        map.seek(old_pos)
+                        map.write(' ')
+                        
+                        new_pos -= 1
+                
+            case 's':
+                while direction == 's':
+                    if new_pos in valid_pos:
+                        direction, _ = timedInput("",0.3)
+                        if direction == '':
+                            direction = 's'
+                        old_pos = new_pos
+                        map.seek(new_pos)
+                        map.write('O')
+                        
+                        os.system('cls')
+                        print_map(map)
+                        #sleep(0.25)
+                                    
+                        map.seek(old_pos)
+                        map.write(' ')
+                        
+                        new_pos += 33
                     
-                    new_pos += 33
-                    
-        if direction == 'w':
-            while direction == 'w':
-                if new_pos in valid_pos:
-                    direction, _ = timedInput("",0.3)
-                    if direction == '':
-                        direction = 'w'
-                    old_pos = new_pos
-                    map.seek(new_pos)
-                    map.write('O')
-                    
-                    os.system('cls')
-                    print_map(map)
-                    #sleep(0.25)
-                                
-                    map.seek(old_pos)
-                    map.write(' ')
-                    
-                    new_pos -= 33
+            case 'w':
+                while direction == 'w':
+                    if new_pos in valid_pos:
+                        direction, _ = timedInput("",0.3)
+                        if direction == '':
+                            direction = 'w'
+                        old_pos = new_pos
+                        map.seek(new_pos)
+                        map.write('O')
+                        
+                        os.system('cls')
+                        print_map(map)
+                        #sleep(0.25)
+                                    
+                        map.seek(old_pos)
+                        map.write(' ')
+                        
+                        new_pos -= 33
             
     
 def print_map(map):
