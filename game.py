@@ -64,18 +64,19 @@ def move_snake(map):
     
     
     # key press logic
-    initial = True
     
-    while True:
-        
-        os.system('cls')
-        
-        print_map(map)
-                
+    os.system('cls')
+    print_map(map)
+    
+    initial = True
+    game_running = True
+    while game_running:
+               
         if initial:
             direction = 'd'
         
         initial = False
+        
         match direction:
             
             case 'd':
@@ -93,16 +94,18 @@ def move_snake(map):
                         map.write(' ')
                         
                         new_pos += 1
+                        
                         direction, _ = timedInput("",0.3)
                         if direction == '':
                             direction = 'd'
+                    else:
+                        game_over()
+                        game_running = False
+                        break
                     
             case 'a':
                 while direction == 'a':
                     if new_pos in valid_pos:
-                        direction, _ = timedInput("",0.3)
-                        if direction == '':
-                            direction = 'a'
                         old_pos = new_pos
                         map.seek(new_pos)
                         map.write('O')
@@ -115,13 +118,18 @@ def move_snake(map):
                         map.write(' ')
                         
                         new_pos -= 1
+                        
+                        direction, _ = timedInput("",0.3)
+                        if direction == '':
+                            direction = 'a'
+                    else:
+                        game_over()
+                        game_running = False
+                        break
                 
             case 's':
                 while direction == 's':
                     if new_pos in valid_pos:
-                        direction, _ = timedInput("",0.3)
-                        if direction == '':
-                            direction = 's'
                         old_pos = new_pos
                         map.seek(new_pos)
                         map.write('O')
@@ -134,13 +142,18 @@ def move_snake(map):
                         map.write(' ')
                         
                         new_pos += 33
+                        
+                        direction, _ = timedInput("",0.3)
+                        if direction == '':
+                            direction = 's'
+                    else:
+                        game_over()
+                        game_running = False
+                        break
                     
             case 'w':
                 while direction == 'w':
                     if new_pos in valid_pos:
-                        direction, _ = timedInput("",0.3)
-                        if direction == '':
-                            direction = 'w'
                         old_pos = new_pos
                         map.seek(new_pos)
                         map.write('O')
@@ -153,10 +166,31 @@ def move_snake(map):
                         map.write(' ')
                         
                         new_pos -= 33
+                        
+                        direction, _ = timedInput("",0.3)
+                        if direction == '':
+                            direction = 'w'
+                    else:
+                        game_over()
+                        game_running = False
+                        break
             
     
 def print_map(map):
     map.seek(0)
     list_of_lines = map.read().split("\n")
+    for line in list_of_lines:
+        print(line)
+
+def game_over():
+    game_running = False
+    os.system('cls')
+    current_directory = os.getcwd()
+    file = "game_over.txt"
+    path = current_directory+"\\"
+    
+    game_over_txt = open(f'{path}{file}', "r")
+    
+    list_of_lines = game_over_txt.read().split("\n")
     for line in list_of_lines:
         print(line)
