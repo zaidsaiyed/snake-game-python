@@ -60,11 +60,15 @@ def food(map):
     
     return food_position
 
+
+
 def direction_to_move(map, direction, new_pos, food_pos):
-    score = 0 
+    score = 0
+    temp = 34
+    snake_pos = []
     while True:
         if new_pos in valid_pos:
-            old_pos = new_pos
+            old_pos = temp
             map.seek(new_pos)
             map.write('O')
             
@@ -75,54 +79,67 @@ def direction_to_move(map, direction, new_pos, food_pos):
             map.seek(old_pos)
             map.write(' ')
             
-            
-            if direction == 'd':
-                
-                new_pos += 1
-                
-                direction, _ = timedInput("",0.25)
-                if direction == '':
-                    direction = 'd'
-                if new_pos == food_pos:
-                    new_food_pos = food(map)
-                    food_pos = new_food_pos
-                    score += 1
+            match direction:
+                case 'd':
                     
-            elif direction == 'a':
-                
-                new_pos -= 1
-                
-                direction, _ = timedInput("",0.25)
-                if direction == '':
-                    direction = 'a'
-                if new_pos == food_pos:
-                    new_food_pos = food(map)
-                    food_pos = new_food_pos
-                    score += 1
+                    new_pos += 1
+                    snake_pos.insert(0,new_pos)
+                    direction, _ = timedInput("",0.15)
+                    if direction == '':
+                        direction = 'd'
                     
-            elif direction == 'w':
-                
-                new_pos -= 33
-                
-                direction, _ = timedInput("",0.35)
-                if direction == '':
-                    direction = 'w'
-                if new_pos == food_pos:
-                    new_food_pos = food(map)
-                    food_pos = new_food_pos
-                    score += 1
+                    # To increase food    
+                    if new_pos == food_pos:
+                        new_food_pos = food(map)
+                        food_pos = new_food_pos
+                        score += 1
+                    else:
+                        temp = snake_pos.pop()
+                        
+                case 'a':
                     
-            elif direction == 's':
-                
-                new_pos += 33
-                
-                direction, _ = timedInput("",0.35)
-                if direction == '':
-                    direction = 's'
-                if new_pos == food_pos:
-                    new_food_pos = food(map)
-                    food_pos = new_food_pos
-                    score += 1
+                    new_pos -= 1
+                    snake_pos.insert(0,new_pos)
+                    direction, _ = timedInput("",0.15)
+                    if direction == '':
+                        direction = 'a'
+                        
+                    if new_pos == food_pos:
+                        new_food_pos = food(map)
+                        food_pos = new_food_pos
+                        score += 1
+                    else:
+                        temp = snake_pos.pop()
+                        
+                case 'w':
+                    
+                    new_pos -= 33
+                    snake_pos.insert(0,new_pos)
+                    direction, _ = timedInput("",0.25)
+                    if direction == '':
+                        direction = 'w'
+                        
+                    if new_pos == food_pos:
+                        new_food_pos = food(map)
+                        food_pos = new_food_pos
+                        score += 1
+                    else:
+                        temp = snake_pos.pop()
+                        
+                case 's':
+                    
+                    new_pos += 33
+                    snake_pos.insert(0,new_pos)
+                    direction, _ = timedInput("",0.25)
+                    if direction == '':
+                        direction = 's'
+                        
+                    if new_pos == food_pos:
+                        new_food_pos = food(map)
+                        food_pos = new_food_pos
+                        score += 1
+                    else:
+                        temp = snake_pos.pop()
             
         else:
             break
