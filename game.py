@@ -1,26 +1,7 @@
-'''
-TODO
-Game loop
-    Game intitalization
-    Game end
-Move snake
+# This file has all game attributes and functions / methods.
 
-Eating snake
-
-MAP
-Food
-Rules
-Score
-
-UI
-
-'''
-
-# This file has all game attributes
-
-
-import os
-import random
+# Importing modules
+import os, random 
 from time import sleep
 from pytimedinput import timedInput
 
@@ -86,6 +67,7 @@ def direction_to_move(map, direction, new_pos, food_pos):
 
             
             match direction:
+                
                 case 'd':
                     
                     new_pos += 1 #35
