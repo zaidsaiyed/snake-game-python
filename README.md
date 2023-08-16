@@ -44,4 +44,4 @@ The `snake.py` file contains all of the game logic. Here's a brief explanation o
 
 ## Credits
 
-This game was created by Zaid Saiyed and is based on the classic Snake game. The game logic and console interface were implemented using Python.
+This game was created by Zaid Saiyed and is based on the classic retro Snake game. The game logic and console interface were implemented using Python.
